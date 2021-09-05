@@ -54,7 +54,7 @@ namespace Catalog
             // Add OpenAPI 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Catalog API Endpoints", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Catalog API Endpoints (Main)", Version = "v1" });
             });
         }
 
