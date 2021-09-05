@@ -34,19 +34,19 @@ namespace Catalog
         public void ConfigureServices(IServiceCollection services)
         {
             // To Serialize the return statements into readable GUID and DatetimeOffSet from the Item model or entity.
-            // BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
-            // BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
+            BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+            BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
 
-            // // Add the MongoDB Services
-            // services.AddSingleton<IMongoClient>(serviceProvider =>
-            // {
-            //     var settings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-            //     return new MongoClient(settings.ConnectionString);
-            // });
+            // Add the MongoDB Services
+            services.AddSingleton<IMongoClient>(serviceProvider =>
+            {
+                var settings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+                return new MongoClient(settings.ConnectionString);
+            });
 
             // Add Dependency Injection 
-            services.AddSingleton<IItemRepository, InMemoryItemRepository>();
-            // services.AddSingleton<IItemRepository, MongoDbItemsRepository>();
+            // services.AddSingleton<IItemRepository, InMemoryItemRepository>();
+            services.AddSingleton<IItemRepository, MongoDbItemsRepository>();
 
             // Add the controller to the configuration service.
             services.AddControllers();
