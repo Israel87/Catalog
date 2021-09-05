@@ -49,7 +49,10 @@ namespace Catalog
             services.AddSingleton<IItemRepository, MongoDbItemsRepository>();
 
             // Add the controller to the configuration service.
-            services.AddControllers();
+            // to handle Suffix errors associated with method names in controllers.
+            services.AddControllers(options => {
+                options.SuppressAsyncSuffixInActionNames = false;
+            });
 
             // Add OpenAPI 
             services.AddSwaggerGen(c =>
