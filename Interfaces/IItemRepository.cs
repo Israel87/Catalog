@@ -10,6 +10,8 @@ namespace Catalog.Interfaces{
         IEnumerable<Item> GetItems();
         void CreateItem(Item item);
         void UpdateItem(Item item);
+
+        // updated the itemrepository:
         void DeleteItem(Guid id);
     }
 
