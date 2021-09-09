@@ -7,10 +7,10 @@ WORKDIR /src
 COPY ["Catalog.csproj", "./"]
 RUN dotnet restore "./Catalog.csproj"
 COPY . .
-# WORKDIR "/src/."
-# RUN dotnet build "Catalog.csproj" -c Release -o /app/build
+WORKDIR "/src/."
+RUN dotnet build "Catalog.csproj" -c Release -o /app/build
 
-# FROM build AS publish
+FROM build AS publish
 RUN dotnet publish "Catalog.csproj" -c Release -o /app/publish
 
 FROM base AS final
